@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
-import { CheckCircle, Heart, Brain, Zap, Smile } from 'lucide-react'
+import { Heart, Brain, Zap, Smile } from 'lucide-react'
 import { useHealthStore } from '../store/healthStore'
 import StatusIcon from './StatusIcon'
 import MetricDisplay from './MetricDisplay'
-import type { HealthEntry } from '../store/healthStore'
 
 const DailyCheckIn = () => {
-  const { addEntry, updateEntry, getTodayEntry, hasCheckedInToday } = useHealthStore()
+  const { addEntry, updateEntry, getTodayEntry } = useHealthStore()
   const [isCompleted, setIsCompleted] = useState(false)
   const [formData, setFormData] = useState({
     energy: 3,
@@ -41,19 +40,29 @@ const DailyCheckIn = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
-    const today = format(new Date(), 'yyyy-MM-dd')
-    const todayEntry = getTodayEntry()
-    
-    if (todayEntry) {
-      updateEntry(todayEntry.id, formData)
-    } else {
-      addEntry({
-        ...formData,
-        date: today,
-      })
+    try {
+      const today = format(new Date(), 'yyyy-MM-dd')
+      const todayEntry = getTodayEntry()
+      
+      console.log('Submitting check-in:', { formData, today, todayEntry })
+      
+      if (todayEntry) {
+        updateEntry(todayEntry.id, formData)
+        console.log('Updated existing entry')
+      } else {
+        addEntry({
+          ...formData,
+          date: today,
+        })
+        console.log('Added new entry')
+      }
+      
+      setIsCompleted(true)
+    } catch (error) {
+      console.error('Error saving check-in:', error)
+      // You could add a toast notification here
+      alert('Terjadi kesalahan saat menyimpan check-in. Silakan coba lagi.')
     }
-    
-    setIsCompleted(true)
   }
 
   const ScaleInput = ({ 

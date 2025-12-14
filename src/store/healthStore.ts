@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { format, isToday, startOfWeek, endOfWeek } from 'date-fns'
 import { id } from 'date-fns/locale'
+import { generateId } from '../utils/storage'
 
 export interface HealthEntry {
   id: string
@@ -41,23 +42,41 @@ export const useHealthStore = create<HealthStore>()(
       entries: [],
       
       addEntry: (entryData) => {
-        const entry: HealthEntry = {
-          ...entryData,
-          id: crypto.randomUUID(),
-          createdAt: new Date().toISOString(),
+        try {
+          const entry: HealthEntry = {
+            ...entryData,
+            id: generateId(),
+            createdAt: new Date().toISOString(),
+          }
+          
+          console.log('Adding entry:', entry)
+          
+          set((state) => ({
+            entries: [...state.entries, entry]
+          }))
+          
+          console.log('Entry added successfully')
+        } catch (error) {
+          console.error('Error adding entry:', error)
+          throw error
         }
-        
-        set((state) => ({
-          entries: [...state.entries, entry]
-        }))
       },
       
       updateEntry: (id, entryData) => {
-        set((state) => ({
-          entries: state.entries.map((entry) =>
-            entry.id === id ? { ...entry, ...entryData } : entry
-          )
-        }))
+        try {
+          console.log('Updating entry:', { id, entryData })
+          
+          set((state) => ({
+            entries: state.entries.map((entry) =>
+              entry.id === id ? { ...entry, ...entryData } : entry
+            )
+          }))
+          
+          console.log('Entry updated successfully')
+        } catch (error) {
+          console.error('Error updating entry:', error)
+          throw error
+        }
       },
       
       getEntry: (date) => {
@@ -123,6 +142,10 @@ export const useHealthStore = create<HealthStore>()(
     }),
     {
       name: 'lunocare-health-data',
+      onRehydrateStorage: () => (state) => {
+        console.log('Hydration finished', state)
+      },
+      partialize: (state) => ({ entries: state.entries }),
     }
   )
 )

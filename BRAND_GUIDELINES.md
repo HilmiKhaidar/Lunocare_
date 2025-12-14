@@ -1,6 +1,7 @@
 # Lunocare Brand Guidelines
 
-**Version 1.0 | December 2025**
+**Version 2.0 | December 2025**
+*Updated after successful deployment and feature completion*
 
 ---
 
@@ -26,8 +27,11 @@
 ### **Tagline**
 "Kesadaran dalam setiap hari"
 
+### **Brand Relationship**
+Lunocare adalah bagian dari **Lunetix ecosystem** (https://lunetix.vercel.app/), sebuah koleksi aplikasi dan tools yang dirancang untuk meningkatkan produktivitas dan kesejahteraan. Lunocare secara khusus fokus pada health awareness dan self-reflection.
+
 ### **Brand Mission**
-Membantu pengguna membangun kesadaran diri terhadap kondisi tubuh dan mental melalui check-in harian yang sederhana, jujur, dan tidak menghakimi, tanpa tekanan medis atau diagnosis.
+Membantu pengguna membangun kesadaran diri terhadap kondisi tubuh dan mental melalui check-in harian yang sederhana, jujur, dan tidak menghakimi. Lunocare menyediakan ruang aman untuk refleksi diri tanpa tekanan medis, diagnosis, atau target yang memberatkan.
 
 ### **Brand Values**
 - **Kesederhanaan**: Interface yang bersih dan mudah dipahami
@@ -44,11 +48,13 @@ Membantu pengguna membangun kesadaran diri terhadap kondisi tubuh dan mental mel
 
 ### **Positioning**
 Lunocare berbeda dari aplikasi kesehatan lainnya karena:
-- Tidak melakukan diagnosis medis
-- Fokus pada kesadaran diri, bukan target pencapaian
-- Data tersimpan lokal di perangkat pengguna
-- Interface yang menenangkan, bukan menakutkan
-- Bahasa yang mendukung, bukan menghakimi
+- **Privacy-First**: Data tersimpan 100% lokal di perangkat pengguna
+- **Non-Medical**: Tidak melakukan diagnosis atau memberikan saran medis
+- **Self-Awareness Focused**: Membangun kesadaran diri, bukan mengejar target
+- **Judgment-Free Zone**: Ruang aman untuk refleksi tanpa penilaian
+- **Progressive Web App**: Pengalaman native app dengan teknologi web modern
+- **Comprehensive Features**: Check-in, dashboard, insights, help, dan settings
+- **Bahasa Indonesia**: Dirancang khusus untuk pengguna Indonesia
 
 ---
 
@@ -278,16 +284,19 @@ Logo Lunocare terdiri dari:
 ### **Interface Principles**
 
 #### **Simplicity First**
-- Maksimal 3 pilihan utama per screen
+- 5 navigasi utama: Check-in, Dashboard, Insights, Help, Settings
 - Gunakan white space secara generous (minimal 16px)
 - Prioritaskan konten utama dengan hierarchy yang jelas
 - Hindari clutter dan informasi yang tidak perlu
+- Mobile-first responsive design untuk semua device
 
 #### **Emotional Safety**
 - Warna-warna yang menenangkan dan tidak menakutkan
 - Tidak ada angka atau skor yang menghakimi
 - Feedback yang selalu positif, netral, atau konstruktif
 - Hindari warna merah untuk feedback negatif
+- Gunakan icons profesional (Lucide React), bukan emoji
+- Bahasa yang mendukung dan tidak menghakimi
 
 #### **Accessibility**
 - Contrast ratio minimum 4.5:1 untuk teks normal
@@ -295,12 +304,49 @@ Logo Lunocare terdiri dari:
 - Touch targets minimum 44px x 44px
 - Support untuk screen readers dan keyboard navigation
 - Font size minimum 14px untuk body text
+- Responsive design untuk laptop, desktop, mobile, tablet
+- Error boundaries untuk graceful error handling
 
 #### **Progressive Web App**
 - Installable di home screen iOS dan Android
 - Offline functionality untuk data yang sudah tersimpan
 - Fast loading dengan service worker caching
 - Native app-like experience
+- Manifest.json dengan proper icons dan metadata
+- PWA install button untuk easy installation
+- Service worker untuk caching dan offline support
+
+### **Current App Features (v2.0)**
+
+#### **Core Navigation**
+- **Check-in Harian**: Daily health awareness tracking dengan 4 metrics utama
+- **Dashboard**: Visualisasi data dengan charts dan weekly averages
+- **Insights**: Personal analytics dan pattern recognition
+- **Help**: Comprehensive guide, FAQ, dan app explanation
+- **Settings**: Data management, preferences, dan PWA installation
+
+#### **Check-in System**
+- **Energy Level**: Skala 1-5 untuk tingkat energi harian
+- **Focus Level**: Skala 1-5 untuk kemampuan konsentrasi
+- **Stress Level**: Skala 1-5 untuk tingkat stres (inverted scale)
+- **Mood Level**: Skala 1-5 untuk kondisi mood
+- **Sleep Hours**: Input jam tidur (0-12 jam)
+- **Water Intake**: Jumlah gelas air (0-15 gelas)
+- **Exercise**: Boolean checkbox untuk aktivitas fisik
+- **Notes**: Optional text area untuk catatan personal
+
+#### **Data Management**
+- **Local Storage**: Semua data tersimpan di localStorage browser
+- **Privacy First**: Tidak ada data yang dikirim ke server
+- **Export Feature**: CSV export untuk backup dan analisis
+- **Data Deletion**: Complete data wipe dengan confirmation
+- **Debug Tools**: Development tools untuk troubleshooting
+
+#### **Responsive Design**
+- **Mobile**: Bottom navigation dengan 5 tabs
+- **Desktop**: Sidebar navigation dengan full labels
+- **Tablet**: Adaptive layout sesuai screen size
+- **Touch Friendly**: Minimum 44px touch targets
 
 ### **Component Guidelines**
 
@@ -341,9 +387,10 @@ Logo Lunocare terdiri dari:
 ## 🌐 PWA Guidelines
 
 ### **Installation Experience**
-- **Install Prompt**: Muncul setelah 2-3 kali kunjungan
-- **Install Button**: Tersedia di header untuk akses mudah
-- **Onboarding**: Jelaskan benefit install (offline access, faster loading)
+- **Install Button**: PWAInstallButton component tersedia di app
+- **Auto Prompt**: Browser native install prompt untuk eligible users
+- **Manual Install**: Guidance di Settings untuk manual installation
+- **Cross Platform**: Support iOS Safari, Android Chrome, Desktop browsers
 
 ### **App Icon Design**
 - **Background**: Gradient mint to teal
@@ -433,8 +480,9 @@ Logo Lunocare terdiri dari:
 
 **Brand Owner**: Lunetix Health Team
 **Email**: health@lunetix.com
-**Website**: https://lunetix.com
-**App URL**: [To be deployed]
+**Website**: https://lunetix.vercel.app/
+**App URL**: https://lunocare-49iz4vy2v-hilmi-khaidarns-projects.vercel.app
+**Repository**: Private GitHub repository under Lunetix organization
 
 ### **Asset Downloads**
 - **Logo Files**: SVG (vector), PNG (raster) dalam berbagai sizes
@@ -454,10 +502,611 @@ Untuk penggunaan brand yang memerlukan approval:
 1. Submit request ke health@lunetix.com
 2. Include mockups atau usage examples
 3. Specify distribution channels dan audience
-4. Wait for approval (2-3 business days)
+4. Reference Lunetix main website: https://lunetix.vercel.app/
+5. Wait for approval (2-3 business days)
+
+---
+
+## 🌊 Lunocare Splash Screen Guidelines v1.0
+
+### Overview
+Panduan ini mendefinisikan standar desain dan implementasi untuk splash screen aplikasi Lunocare, memastikan konsistensi dengan identitas visual brand dan menciptakan pengalaman pengguna yang menenangkan dan profesional.
+
+### Brand Identity Integration
+
+#### Core Philosophy
+- **Kesadaran Diri**: Membangun health awareness tanpa judgment
+- **Caring Companion**: Pendamping yang empati dan mendukung  
+- **Mindful Health**: Kesehatan sebagai bentuk self-care
+- **Gentle Approach**: Pendekatan lembut dan tidak memaksa
+
+#### Visual Language
+- **Minimalis**: Clean, tidak berlebihan
+- **Calming**: Warna dan animasi yang menenangkan
+- **Professional**: Terlihat kredibel dan terpercaya
+- **Accessible**: Mudah dipahami semua kalangan
+
+### Color Palette for Splash Screen
+
+#### Primary Colors
+```css
+/* Lunocare Brand Colors */
+--brand-mint: #10B981    /* Primary brand color */
+--brand-teal: #06B6D4    /* Secondary brand color */
+```
+
+#### Gradient Specifications
+```css
+/* Main Background Gradient */
+background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+/* Alternative: More subtle gradient */
+background: linear-gradient(to bottom right, #10B981, #06B6D4);
+```
+
+#### Supporting Colors
+```css
+--white: #FFFFFF         /* Text and UI elements */
+--white-10: rgba(255, 255, 255, 0.1)   /* Subtle backgrounds */
+--white-20: rgba(255, 255, 255, 0.2)   /* Progress bars */
+--white-30: rgba(255, 255, 255, 0.3)   /* Borders */
+--white-60: rgba(255, 255, 255, 0.6)   /* Secondary text */
+--white-70: rgba(255, 255, 255, 0.7)   /* Footer text */
+--white-80: rgba(255, 255, 255, 0.8)   /* Loading text */
+--white-90: rgba(255, 255, 255, 0.9)   /* Tagline */
+```
+
+### Typography for Splash Screen
+
+#### Font Family
+```css
+font-family: 'Inter', sans-serif;
+```
+
+#### Text Hierarchy
+```css
+/* App Name */
+.app-title {
+  font-size: 2.25rem;        /* 36px mobile */
+  font-size: 3rem;           /* 48px desktop */
+  font-weight: 700;          /* Bold */
+  color: #FFFFFF;
+  letter-spacing: -0.025em;  /* Tight */
+  line-height: 1.1;
+}
+
+/* Tagline */
+.tagline {
+  font-size: 1.125rem;       /* 18px mobile */
+  font-size: 1.25rem;        /* 20px desktop */
+  font-weight: 500;          /* Medium */
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.3;
+}
+
+/* Loading Text */
+.loading-text {
+  font-size: 0.875rem;       /* 14px mobile */
+  font-size: 1rem;           /* 16px desktop */
+  font-weight: 500;          /* Medium */
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* Footer Text */
+.footer-text {
+  font-size: 0.75rem;        /* 12px mobile */
+  font-size: 0.875rem;       /* 14px desktop */
+  font-weight: 400;          /* Regular */
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+```
+
+### Logo & Icon Design for Splash
+
+#### Logo Specifications
+```css
+/* Mobile Logo Container */
+.logo-mobile {
+  width: 6rem;               /* 96px */
+  height: 6rem;              /* 96px */
+}
+
+/* Desktop Logo Container */
+.logo-desktop {
+  width: 8rem;               /* 128px */
+  height: 8rem;              /* 128px */
+}
+
+/* Outer Ring */
+.logo-outer-ring {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: spin-slow 3s linear infinite;
+}
+
+/* Inner Circle */
+.logo-inner-circle {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+}
+
+/* Icon */
+.logo-icon {
+  width: 2rem;               /* 32px mobile */
+  width: 2.5rem;             /* 40px desktop */
+  height: 2rem;              /* 32px mobile */
+  height: 2.5rem;            /* 40px desktop */
+  color: #FFFFFF;
+}
+```
+
+#### Icon Guidelines
+- Gunakan Heart icon (sesuai brand Lunocare)
+- Style: Lucide React icons dengan stroke width 2px
+- Warna: Putih solid (#FFFFFF)
+- Posisi: Center dalam inner circle
+
+### Animation Specifications
+
+#### Logo Animation
+```css
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+```
+
+#### Background Decorations
+```css
+/* Floating Circles */
+.bg-decoration {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Size Variations */
+.decoration-large { width: 5rem; height: 5rem; }    /* 80px */
+.decoration-medium { width: 4rem; height: 4rem; }   /* 64px */
+.decoration-small { width: 3rem; height: 3rem; }    /* 48px */
+.decoration-tiny { width: 2rem; height: 2rem; }     /* 32px */
+```
+
+### Loading States & Content
+
+#### Loading Sequence for Lunocare
+```javascript
+const loadingSteps = [
+  { progress: 20, text: 'Mempersiapkan aplikasi...', duration: 600 },
+  { progress: 40, text: 'Memuat data kesehatan...', duration: 600 },
+  { progress: 60, text: 'Menyiapkan dashboard...', duration: 600 },
+  { progress: 80, text: 'Hampir siap...', duration: 600 },
+  { progress: 100, text: 'Selamat datang!', duration: 500 }
+];
+```
+
+#### Content Guidelines
+```javascript
+// App Name
+"Lunocare"
+
+// Tagline
+"Kesadaran dalam setiap hari"
+
+// Loading Messages
+[
+  "Mempersiapkan aplikasi...",
+  "Memuat data kesehatan...", 
+  "Menyiapkan dashboard...",
+  "Hampir siap...",
+  "Selamat datang!"
+]
+
+// Footer Text
+"Bagian dari ekosistem Lunetix"
+"v2.0.0 • by Lunetix Health Team"
+```
+
+### Accessibility Requirements
+```css
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow,
+  .animate-bounce,
+  .animate-pulse {
+    animation: none;
+  }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .splash-container {
+    background: linear-gradient(135deg, #0D9488 0%, #0891B2 100%);
+  }
+}
+```
+
+### Implementation Checklist
+
+#### Visual Quality
+- [ ] Gradient smooth dan tidak ada banding
+- [ ] Animasi berjalan dengan frame rate stabil (60fps)
+- [ ] Text readable di semua ukuran layar
+- [ ] Logo centered dan proporsional
+- [ ] Loading bar smooth transition
+
+#### Performance
+- [ ] Total loading time ≤ 4 detik
+- [ ] Animasi tidak menyebabkan lag
+- [ ] Memory usage optimal
+- [ ] Smooth transition ke main app
+
+#### Brand Compliance
+- [ ] Warna sesuai Lunocare palette
+- [ ] Typography menggunakan Inter font
+- [ ] Messaging tone sesuai "Caring Companion"
+- [ ] Logo dan branding konsisten dengan app
+
+# Lunocare Splash Screen Brand Guidelines v1.0
+
+## Overview
+Panduan ini mendefinisikan standar desain dan implementasi untuk splash screen aplikasi Lunocare, memastikan konsistensi dengan identitas visual brand dan menciptakan pengalaman pengguna yang menenangkan dan profesional.
+
+## Brand Identity
+
+### Core Philosophy
+- **Kesadaran Diri**: Membangun awareness tanpa judgment
+- **Caring Companion**: Pendamping yang empati dan mendukung
+- **Health Awareness**: Kesehatan sebagai bentuk self-care
+- **Gentle Approach**: Pendekatan lembut dan tidak memaksa
+
+### Visual Language
+- **Minimalis**: Clean, tidak berlebihan
+- **Calming**: Warna dan animasi yang menenangkan
+- **Professional**: Terlihat kredibel dan terpercaya
+- **Accessible**: Mudah dipahami semua kalangan
+
+## Color Palette
+
+### Primary Colors
+```css
+/* Lunocare Brand Colors */
+--brand-mint: #10B981    /* Primary brand color */
+--brand-teal: #06B6D4    /* Secondary brand color */
+```
+
+### Gradient Specifications
+```css
+/* Main Background Gradient */
+background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+/* Alternative: More subtle gradient */
+background: linear-gradient(to bottom right, #10B981, #06B6D4);
+```
+
+### Supporting Colors
+```css
+--white: #FFFFFF         /* Text and UI elements */
+--white-10: rgba(255, 255, 255, 0.1)   /* Subtle backgrounds */
+--white-20: rgba(255, 255, 255, 0.2)   /* Progress bars */
+--white-30: rgba(255, 255, 255, 0.3)   /* Borders */
+--white-60: rgba(255, 255, 255, 0.6)   /* Secondary text */
+--white-70: rgba(255, 255, 255, 0.7)   /* Footer text */
+--white-80: rgba(255, 255, 255, 0.8)   /* Loading text */
+--white-90: rgba(255, 255, 255, 0.9)   /* Tagline */
+```
+
+## Typography
+
+### Font Family
+```css
+font-family: 'Inter', sans-serif;
+```
+
+### Text Hierarchy
+```css
+/* App Name */
+.app-title {
+  font-size: 2.25rem;        /* 36px mobile */
+  font-size: 3rem;           /* 48px desktop */
+  font-weight: 700;          /* Bold */
+  color: #FFFFFF;
+  letter-spacing: -0.025em;  /* Tight */
+  line-height: 1.1;
+}
+
+/* Tagline */
+.tagline {
+  font-size: 1.125rem;       /* 18px mobile */
+  font-size: 1.25rem;        /* 20px desktop */
+  font-weight: 500;          /* Medium */
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.3;
+}
+
+/* Loading Text */
+.loading-text {
+  font-size: 0.875rem;       /* 14px mobile */
+  font-size: 1rem;           /* 16px desktop */
+  font-weight: 500;          /* Medium */
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* Footer Text */
+.footer-text {
+  font-size: 0.75rem;        /* 12px mobile */
+  font-size: 0.875rem;       /* 14px desktop */
+  font-weight: 400;          /* Regular */
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+```
+
+## Logo & Icon Design
+
+### Logo Specifications
+```css
+/* Mobile Logo Container */
+.logo-mobile {
+  width: 6rem;               /* 96px */
+  height: 6rem;              /* 96px */
+}
+
+/* Desktop Logo Container */
+.logo-desktop {
+  width: 8rem;               /* 128px */
+  height: 8rem;              /* 128px */
+}
+
+/* Outer Ring */
+.logo-outer-ring {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: spin-slow 3s linear infinite;
+}
+
+/* Inner Circle */
+.logo-inner-circle {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+}
+
+/* Icon */
+.logo-icon {
+  width: 2rem;               /* 32px mobile */
+  width: 2.5rem;             /* 40px desktop */
+  height: 2rem;              /* 32px mobile */
+  height: 2.5rem;            /* 40px desktop */
+  color: #FFFFFF;
+}
+```
+
+### Icon Guidelines
+- Gunakan ikon Heart (sesuai brand Lunocare)
+- Style: Outline dengan stroke width 2px
+- Warna: Putih solid (#FFFFFF)
+- Posisi: Center dalam inner circle
+
+## Animation Specifications
+
+### Logo Animation
+```css
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+```
+
+### Loading Sequence
+```javascript
+const loadingSteps = [
+  { progress: 20, text: 'Mempersiapkan aplikasi...', duration: 600 },
+  { progress: 40, text: 'Memuat data kesehatan...', duration: 600 },
+  { progress: 60, text: 'Menyiapkan dashboard...', duration: 600 },
+  { progress: 80, text: 'Hampir siap...', duration: 600 },
+  { progress: 100, text: 'Selamat datang!', duration: 500 }
+];
+```
+
+## Content Guidelines
+
+### Text Content
+```javascript
+// App Name
+"Lunocare"
+
+// Tagline
+"Kesadaran dalam setiap hari"
+
+// Loading Messages
+[
+  "Mempersiapkan aplikasi...",
+  "Memuat data kesehatan...",
+  "Menyiapkan dashboard...",
+  "Hampir siap...",
+  "Selamat datang!"
+]
+
+// Footer Text
+"Bagian dari ekosistem Lunetix"
+"v2.0.0 • by Lunetix Health Team"
+```
+
+# Lunocare Splash Screen Brand Guidelines v1.0
+
+## Overview
+Panduan ini mendefinisikan standar desain dan implementasi untuk splash screen aplikasi Lunocare, memastikan konsistensi dengan identitas visual Lunocare dan menciptakan pengalaman pengguna yang menenangkan dan profesional.
+
+## Brand Identity
+
+### Core Philosophy
+- **Kesadaran Diri**: Membangun awareness tanpa judgment
+- **Caring Companion**: Pendamping yang empati dan mendukung
+- **Health Awareness**: Kesadaran kesehatan sebagai bentuk self-care
+- **Gentle Approach**: Pendekatan lembut dan tidak memaksa
+
+### Visual Language
+- **Minimalis**: Clean, tidak berlebihan
+- **Calming**: Warna dan animasi yang menenangkan
+- **Professional**: Terlihat kredibel dan terpercaya
+- **Accessible**: Mudah dipahami semua kalangan
+
+## Color Palette
+
+### Primary Colors
+```css
+/* Lunocare Brand Colors */
+--brand-mint: #10B981    /* Primary brand color */
+--brand-teal: #06B6D4    /* Secondary brand color */
+```
+
+### Gradient Specifications
+```css
+/* Main Background Gradient */
+background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+/* Alternative: More subtle gradient */
+background: linear-gradient(to bottom right, #10B981, #06B6D4);
+```
+
+### Supporting Colors
+```css
+--white: #FFFFFF         /* Text and UI elements */
+--white-10: rgba(255, 255, 255, 0.1)   /* Subtle backgrounds */
+--white-20: rgba(255, 255, 255, 0.2)   /* Progress bars */
+--white-30: rgba(255, 255, 255, 0.3)   /* Borders */
+--white-60: rgba(255, 255, 255, 0.6)   /* Secondary text */
+--white-70: rgba(255, 255, 255, 0.7)   /* Footer text */
+--white-80: rgba(255, 255, 255, 0.8)   /* Loading text */
+--white-90: rgba(255, 255, 255, 0.9)   /* Tagline */
+```
+
+## Typography
+
+### Font Family
+```css
+font-family: 'Inter', sans-serif;
+```
+
+### Text Hierarchy
+```css
+/* App Name */
+.app-title {
+  font-size: 2.25rem;        /* 36px mobile */
+  font-size: 3rem;           /* 48px desktop */
+  font-weight: 700;          /* Bold */
+  color: #FFFFFF;
+  letter-spacing: -0.025em;  /* Tight */
+  line-height: 1.1;
+}
+
+/* Tagline */
+.tagline {
+  font-size: 1.125rem;       /* 18px mobile */
+  font-size: 1.25rem;        /* 20px desktop */
+  font-weight: 500;          /* Medium */
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.3;
+}
+
+/* Loading Text */
+.loading-text {
+  font-size: 0.875rem;       /* 14px mobile */
+  font-size: 1rem;           /* 16px desktop */
+  font-weight: 500;          /* Medium */
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* Footer Text */
+.footer-text {
+  font-size: 0.75rem;        /* 12px mobile */
+  font-size: 0.875rem;       /* 14px desktop */
+  font-weight: 400;          /* Regular */
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+```
+
+## Content Guidelines
+
+### Messaging Tone
+- **Empati**: Gunakan bahasa yang memahami kebutuhan user
+- **Supportive**: Memberikan dukungan tanpa judgment
+- **Personal**: Fokus pada kebutuhan individual
+- **Gentle**: Hindari kata-kata yang memaksa atau menuntut
+
+### Text Content
+```javascript
+// App Name
+"Lunocare"
+
+// Tagline
+"Kesadaran dalam setiap hari"
+
+// Loading Messages
+[
+  "Mempersiapkan aplikasi...",
+  "Memuat data personal...", 
+  "Menyiapkan refleksi kesehatan...",
+  "Hampir siap...",
+  "Selamat datang!"
+]
+
+// Footer Text
+"Bagian dari ekosistem Lunetix"
+"v2.0.0 • by Lunetix"
+```
+
+## Animation Specifications
+
+### Logo Animation
+```css
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+```
+
+### Loading Sequence
+```javascript
+const loadingSteps = [
+  { progress: 20, text: 'Mempersiapkan aplikasi...', duration: 600 },
+  { progress: 40, text: 'Memuat data personal...', duration: 600 },
+  { progress: 60, text: 'Menyiapkan refleksi kesehatan...', duration: 600 },
+  { progress: 80, text: 'Hampir siap...', duration: 600 },
+  { progress: 100, text: 'Selamat datang!', duration: 500 }
+];
+```
+
+### Timing Guidelines
+- **Total Duration**: 3.5 detik (optimal untuk UX)
+- **Step Interval**: 600ms per step
+- **Final Delay**: 500ms sebelum transition
+- **Transition**: Smooth fade out
 
 ---
 
 **© 2025 Lunetix. All rights reserved.**
 
 *Dokumen ini bersifat confidential dan proprietary. Distribusi terbatas untuk personel yang berwenang saja. Untuk pertanyaan brand usage, hubungi health@lunetix.com.*
+
+**Lunetix Ecosystem:**
+- **Main Website**: https://lunetix.vercel.app/
+- **Lunocare Health App**: https://lunocare-49iz4vy2v-hilmi-khaidarns-projects.vercel.app
+- **Other Products**: Coming soon under Lunetix brand family

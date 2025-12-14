@@ -1,4 +1,4 @@
-import { Heart, BarChart3, Lightbulb } from 'lucide-react'
+import { Heart, BarChart3, Lightbulb, HelpCircle, Settings } from 'lucide-react'
 
 interface BottomNavigationProps {
   currentView: string
@@ -11,6 +11,8 @@ const BottomNavigation = ({ currentView, onViewChange, hasCheckedInToday }: Bott
     { id: 'checkin', label: 'Check-in', icon: Heart },
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
     { id: 'insights', label: 'Wawasan', icon: Lightbulb },
+    { id: 'help', label: 'Bantuan', icon: HelpCircle },
+    { id: 'settings', label: 'Pengaturan', icon: Settings },
   ]
 
   return (

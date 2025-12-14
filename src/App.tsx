@@ -1,31 +1,89 @@
-import { useState } from 'react'
-import { Heart, Menu, X, BarChart3, Lightbulb } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Heart, BarChart3, Lightbulb, HelpCircle, Settings as SettingsIcon } from 'lucide-react'
 import { useHealthStore } from './store/healthStore'
 import Header from './components/Header'
 import DailyCheckIn from './components/DailyCheckIn'
 import Dashboard from './components/Dashboard'
 import Insights from './components/Insights'
+import Help from './components/Help'
+import Settings from './components/Settings'
 import StatusIcon from './components/StatusIcon'
 import BottomNavigation from './components/BottomNavigation'
 import PWAInstallButton from './components/PWAInstallButton'
+import ErrorBoundary from './components/ErrorBoundary'
+import DebugInfo from './components/DebugInfo'
+import SplashScreen from './components/SplashScreen'
 
-type View = 'checkin' | 'dashboard' | 'insights'
+type View = 'checkin' | 'dashboard' | 'insights' | 'help' | 'settings'
 
 function App() {
   const [currentView, setCurrentView] = useState<View>('checkin')
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [showSplash, setShowSplash] = useState<boolean | null>(null) // null = loading, true = show, false = hide
   const { hasCheckedInToday } = useHealthStore()
+
+  // Check if user has seen splash screen before
+  useEffect(() => {
+    const hasSeenSplash = localStorage.getItem('lunocare-splash-seen')
+    if (hasSeenSplash === 'true') {
+      setShowSplash(false)
+    } else {
+      setShowSplash(true)
+    }
+  }, [])
+
+  const handleSplashComplete = () => {
+    localStorage.setItem('lunocare-splash-seen', 'true')
+    setShowSplash(false)
+  }
+
+  // Show loading or splash screen
+  if (showSplash === null) {
+    // Loading state - prevent flash
+    return <div className="fixed inset-0 bg-gradient-to-br from-mint-500 to-teal-500"></div>
+  }
+
+  if (showSplash === true) {
+    return <SplashScreen onComplete={handleSplashComplete} />
+  }
 
   const renderView = () => {
     switch (currentView) {
       case 'checkin':
-        return <DailyCheckIn />
+        return (
+          <ErrorBoundary>
+            <DailyCheckIn />
+          </ErrorBoundary>
+        )
       case 'dashboard':
-        return <Dashboard />
+        return (
+          <ErrorBoundary>
+            <Dashboard />
+          </ErrorBoundary>
+        )
       case 'insights':
-        return <Insights />
+        return (
+          <ErrorBoundary>
+            <Insights />
+          </ErrorBoundary>
+        )
+      case 'help':
+        return (
+          <ErrorBoundary>
+            <Help />
+          </ErrorBoundary>
+        )
+      case 'settings':
+        return (
+          <ErrorBoundary>
+            <Settings />
+          </ErrorBoundary>
+        )
       default:
-        return <DailyCheckIn />
+        return (
+          <ErrorBoundary>
+            <DailyCheckIn />
+          </ErrorBoundary>
+        )
     }
   }
 
@@ -33,6 +91,8 @@ function App() {
     { id: 'checkin', label: 'Check-in Harian', icon: Heart },
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
     { id: 'insights', label: 'Wawasan', icon: Lightbulb },
+    { id: 'help', label: 'Bantuan', icon: HelpCircle },
+    { id: 'settings', label: 'Pengaturan', icon: SettingsIcon },
   ]
 
   return (
@@ -95,6 +155,9 @@ function App() {
 
       {/* PWA Install Button */}
       <PWAInstallButton />
+
+      {/* Debug Info (development only) */}
+      <DebugInfo />
     </div>
   )
 }

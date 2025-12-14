@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { format, subDays, eachDayOfInterval } from 'date-fns'
+import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 import { Lightbulb, TrendingUp, TrendingDown, Minus, Heart } from 'lucide-react'
 import { useHealthStore } from '../store/healthStore'
