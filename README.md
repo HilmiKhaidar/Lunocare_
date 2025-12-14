@@ -36,6 +36,32 @@ npm run preview
 
 Aplikasi akan berjalan di `http://localhost:3000`
 
+## 📱 PWA Features
+
+Lunocare adalah Progressive Web App (PWA) yang dapat diinstall di:
+- **iOS**: Safari > Share > Add to Home Screen
+- **Android**: Chrome > Menu > Add to Home Screen
+- **Desktop**: Chrome > Install App (icon di address bar)
+
+### PWA Benefits
+- ⚡ Fast loading dengan service worker caching
+- 📱 Native app-like experience
+- 🔒 Data tersimpan lokal dan aman
+- 📶 Offline functionality untuk data yang sudah tersimpan
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Push code ke GitHub repository
+2. Connect repository ke Vercel
+3. Deploy otomatis dengan konfigurasi di `vercel.json`
+
+### Manual Build
+```bash
+npm run build
+# Upload dist/ folder ke hosting provider
+```
+
 ## 📱 Tech Stack
 
 - **Frontend**: React + TypeScript + Vite

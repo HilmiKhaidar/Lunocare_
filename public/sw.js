@@ -1,11 +1,8 @@
 const CACHE_NAME = 'lunocare-v1.0.0';
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/manifest.json',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/icon.svg'
 ];
 
 // Install event - cache resources
@@ -20,6 +17,7 @@ self.addEventListener('install', (event) => {
         console.log('Cache install failed:', error);
       })
   );
+  self.skipWaiting();
 });
 
 // Fetch event - serve from cache, fallback to network
@@ -53,55 +51,5 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
-});
-
-// Background sync for offline data
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'background-sync') {
-    event.waitUntil(
-      // Handle background sync for health data
-      console.log('Background sync triggered')
-    );
-  }
-});
-
-// Push notifications (for future use)
-self.addEventListener('push', (event) => {
-  const options = {
-    body: event.data ? event.data.text() : 'Waktunya check-in harian Anda!',
-    icon: '/icons/icon-192x192.png',
-    badge: '/icons/badge-72x72.png',
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1
-    },
-    actions: [
-      {
-        action: 'explore',
-        title: 'Buka Lunocare',
-        icon: '/icons/checkmark.png'
-      },
-      {
-        action: 'close',
-        title: 'Tutup',
-        icon: '/icons/xmark.png'
-      }
-    ]
-  };
-
-  event.waitUntil(
-    self.registration.showNotification('Lunocare', options)
-  );
-});
-
-// Handle notification clicks
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-
-  if (event.action === 'explore') {
-    event.waitUntil(
-      clients.openWindow('/')
-    );
-  }
+  self.clients.claim();
 });

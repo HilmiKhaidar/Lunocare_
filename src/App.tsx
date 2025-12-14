@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard'
 import Insights from './components/Insights'
 import StatusIcon from './components/StatusIcon'
 import BottomNavigation from './components/BottomNavigation'
+import PWAInstallButton from './components/PWAInstallButton'
 
 type View = 'checkin' | 'dashboard' | 'insights'
 
@@ -91,6 +92,9 @@ function App() {
         onViewChange={(view) => setCurrentView(view as View)}
         hasCheckedInToday={hasCheckedInToday()}
       />
+
+      {/* PWA Install Button */}
+      <PWAInstallButton />
     </div>
   )
 }

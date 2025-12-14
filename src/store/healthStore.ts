@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware'
-import { format, isToday, startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns'
+import { persist } from 'zustand/middleware'
+import { format, isToday, startOfWeek, endOfWeek } from 'date-fns'
 import { id } from 'date-fns/locale'
 
 export interface HealthEntry {
@@ -123,7 +123,6 @@ export const useHealthStore = create<HealthStore>()(
     }),
     {
       name: 'lunocare-health-data',
-      storage: createJSONStorage(() => localStorage),
     }
   )
 )
